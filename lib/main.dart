@@ -1,5 +1,7 @@
 import 'package:blocwithcleanarchitecture/src/features/Home/UI/home_screen.dart';
+import 'package:blocwithcleanarchitecture/src/features/Home/bloc/todo_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'injector.dart';
 
@@ -13,7 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TodoBloc(),
+        )
+      ],
+      child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -21,6 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomeScreen()
+    ),
     );
   }
 }
