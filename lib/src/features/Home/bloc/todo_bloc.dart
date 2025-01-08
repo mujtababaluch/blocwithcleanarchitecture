@@ -17,7 +17,9 @@ class TodoBloc extends Bloc<TodoEvent , TodoState> {
   final getTodosUsecase = injector<GetTodosUsecase>();
     
   TodoBloc():super(TodoInitial()){
+ 
     on<FetchTodos>(fetchTodosapicall);
+       add(FetchTodos()); 
   }
   void fetchTodosapicall(FetchTodos event, Emitter<TodoState> emit)async {
      emit(TodoLoading());
