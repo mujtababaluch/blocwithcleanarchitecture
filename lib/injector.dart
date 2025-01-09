@@ -1,3 +1,5 @@
+import 'package:blocwithcleanarchitecture/src/data/data_sources/login_data_source_impl.dart';
+import 'package:blocwithcleanarchitecture/src/domain/data_sources/login_data_source.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,6 +25,7 @@ Future<void> initializeDependencies() async {
     //data sources
   
   injector.registerLazySingleton<TodoDataSource>(() => TodoDataSourceImpl(client: injector()),);
+  injector.registerLazySingleton<LoginDataSource>(() => LoginDataSourceImpl(client: injector()),);
 
   //repositories
    injector.registerLazySingleton<TodoRepository>(() => TodoRepositoryImpl(dataSource: injector()),);
