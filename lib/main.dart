@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'injector.dart';
+import 'src/features/login/UI/login_screen.dart';
 
 void main()async {
   await  initializeDependencies();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen()
+      home: const LoginScreen()
     ),
     );
   }
