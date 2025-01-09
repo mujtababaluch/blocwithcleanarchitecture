@@ -12,6 +12,7 @@ import 'src/data/repositories/todo_repository_impl.dart';
 import 'src/domain/data_sources/todo_data_source.dart';
 import 'src/domain/repositories/todo_repository.dart';
 import 'src/domain/use_cases/get_todos_usecase.dart';
+import 'src/domain/use_cases/login_usecase.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -34,4 +35,5 @@ Future<void> initializeDependencies() async {
 
   //usecases
    injector.registerLazySingleton<GetTodosUsecase>(() => GetTodosUsecase(repository: injector()),);
+   injector.registerLazySingleton<LoginUsecase>(() => LoginUsecase(injector()),);
 }
