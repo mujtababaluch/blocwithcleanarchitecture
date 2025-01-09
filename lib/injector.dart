@@ -1,5 +1,7 @@
 import 'package:blocwithcleanarchitecture/src/data/data_sources/login_data_source_impl.dart';
+import 'package:blocwithcleanarchitecture/src/data/repositories/login_repository_impl.dart';
 import 'package:blocwithcleanarchitecture/src/domain/data_sources/login_data_source.dart';
+import 'package:blocwithcleanarchitecture/src/domain/repositories/login_repository.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,12 +25,12 @@ Future<void> initializeDependencies() async {
    injector.registerLazySingleton<DioClient>(() => DioClient(),);
 
     //data sources
-  
   injector.registerLazySingleton<TodoDataSource>(() => TodoDataSourceImpl(client: injector()),);
   injector.registerLazySingleton<LoginDataSource>(() => LoginDataSourceImpl(client: injector()),);
 
   //repositories
    injector.registerLazySingleton<TodoRepository>(() => TodoRepositoryImpl(dataSource: injector()),);
+   injector.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(dataSource: injector()),);
 
   //usecases
    injector.registerLazySingleton<GetTodosUsecase>(() => GetTodosUsecase(repository: injector()),);
