@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/bloc/login_bloc.dart';
 
 class LoginScreenView extends StatelessWidget {
-  const LoginScreenView({super.key});
+ LoginScreenView({super.key});
+
+   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +26,18 @@ class LoginScreenView extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32.0),
-          const TextField(
-            decoration: InputDecoration(
-              labelText: 'Phone Number',
+        TextField(
+            controller: usernameController,
+            decoration:   const  InputDecoration(
+              labelText: 'Username',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16.0),
-          const TextField(
-            decoration: InputDecoration(
+          TextField(
+            controller: passwordController,
+            decoration:const  InputDecoration(
               labelText: 'Password',
               border: OutlineInputBorder(),
             ),
@@ -38,7 +46,12 @@ class LoginScreenView extends StatelessWidget {
           const SizedBox(height: 32.0),
           ElevatedButton(
             onPressed: () {
-              // Handle login action
+                 context.read<LoginBloc>().add(
+                  LoginButtonPressed(
+                    username: usernameController.text,
+                    password: passwordController.text,
+                  )
+                 );
             },
             child: const Text('Login'),
           ),
